@@ -12,6 +12,7 @@ import com.example.quickshare.fragments.AppsFragment;
 import com.example.quickshare.fragments.FileFragment;
 import com.example.quickshare.fragments.ImageFragment;
 import com.example.quickshare.fragments.MediaFragment;
+import com.example.quickshare.fragments.VideoFragment;
 import com.example.quickshare.listeners.ClickListener;
 import com.example.quickshare.model.InstalledApps;
 import com.google.android.material.tabs.TabLayout;
@@ -45,11 +46,13 @@ public class FileSelectorActivity extends AppCompatActivity implements ClickList
         AppsFragment appsFragment = new AppsFragment();
         MediaFragment mediaFragment = new MediaFragment();
         ImageFragment imageFragment = new ImageFragment();
+        VideoFragment videoFragment = new VideoFragment();
         FileFragment fileFragment = new FileFragment();
 
         viewPagerAdapter.addFragment(appsFragment, "Apps");
-        viewPagerAdapter.addFragment(mediaFragment, "Media");
+        viewPagerAdapter.addFragment(mediaFragment, "Music");
         viewPagerAdapter.addFragment(imageFragment, "Images");
+        viewPagerAdapter.addFragment(videoFragment, "Videos");
         viewPagerAdapter.addFragment(fileFragment, "Files");
 
         viewPager.setAdapter(viewPagerAdapter);

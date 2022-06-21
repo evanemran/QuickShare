@@ -1,5 +1,6 @@
 package com.example.quickshare.fragments;
 
+import android.app.ProgressDialog;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class AppsFragment extends Fragment {
     View view;
     List<InstalledApps> appsList = new ArrayList<>();
     RecyclerView recycler_apps;
+    ProgressDialog dialog;
 
     @Nullable
     @Override
@@ -37,6 +39,8 @@ public class AppsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_apps, container, false);
 
         recycler_apps = view.findViewById(R.id.recycler_apps);
+        dialog = new ProgressDialog(getContext());
+        dialog.setTitle("Loading...");
 
         setupSystemList(getInstalledApps(true));
 

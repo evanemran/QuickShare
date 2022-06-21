@@ -9,7 +9,6 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,63 +18,62 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.quickshare.R;
-import com.example.quickshare.adapters.ImagesListAdapter;
 import com.example.quickshare.adapters.VideosListAdapter;
 import com.example.quickshare.listeners.ClickListener;
-import com.example.quickshare.model.InImages;
 import com.example.quickshare.model.InVideos;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class ImageFragment extends Fragment {
+public class VideoFragment extends Fragment {
 
     View view;
-    List<InImages> imgList = new ArrayList<>();
+    List<InVideos> vidList = new ArrayList<>();
     Uri collection;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_images, container, false);
+        view = inflater.inflate(R.layout.fragment_videos, container, false);
 
-        imgList = getImageFiles();
+        vidList = getVideoFiles();
 
-        RecyclerView recycler_images = view.findViewById(R.id.recycler_images);
-        recycler_images.setHasFixedSize(true);
-        recycler_images.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        ImagesListAdapter adapter = new ImagesListAdapter(getContext(), imgList, clickListener);
-        recycler_images.setAdapter(adapter);
+        RecyclerView recycler_videos = view.findViewById(R.id.recycler_videos);
+        recycler_videos.setHasFixedSize(true);
+        recycler_videos.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        VideosListAdapter adapter = new VideosListAdapter(getContext(), vidList, clickListener);
+        recycler_videos.setAdapter(adapter);
 
 
         return view;
     }
 
-    private List<InImages> getImageFiles() {
-        List<InImages> list = new ArrayList<>();
+    private List<InVideos> getVideoFiles() {
+        List<InVideos> videos = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-            collection = MediaStore.Images.Media.getContentUri(
+            collection = MediaStore.Video.Media.getContentUri(
                     MediaStore.VOLUME_EXTERNAL
             );
         }
         else{
-            collection = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+            collection = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
         }
 
         String[] projection = new String[] {
-                MediaStore.Images.Media._ID,
-                MediaStore.Images.Media.DISPLAY_NAME,
-                MediaStore.Images.Media.SIZE
+                MediaStore.Video.Media._ID,
+                MediaStore.Video.Media.DISPLAY_NAME,
+                MediaStore.Video.Media.DURATION,
+                MediaStore.Video.Media.SIZE
         };
 
-        String selection = MediaStore.Images.Media.SIZE +
+        String selection = MediaStore.Video.Media.DURATION +
                 " >= ?";
         String[] selectionArgs = new String[] {
                 String.valueOf(TimeUnit.MILLISECONDS.convert(5, TimeUnit.MINUTES))
         };
-        String sortOrder = MediaStore.Images.Media.DISPLAY_NAME + " ASC";
+        String sortOrder = MediaStore.Video.Media.DISPLAY_NAME + " ASC";
 
         try (Cursor cursor = getContext().getContentResolver().query(
                 collection,
@@ -85,31 +83,34 @@ public class ImageFragment extends Fragment {
                 sortOrder
         )) {
             // Cache column indices.
-            int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+            int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID);
             int nameColumn =
-                    cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
-            int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE);
+                    cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME);
+            int durationColumn =
+                    cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION);
+            int sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE);
 
             while (cursor.moveToNext()) {
                 // Get values of columns for a given video.
                 long id = cursor.getLong(idColumn);
                 String name = cursor.getString(nameColumn);
+                int duration = cursor.getInt(durationColumn);
                 int size = cursor.getInt(sizeColumn);
 
                 Uri contentUri = ContentUris.withAppendedId(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                        MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id);
 
                 // Stores column values and the contentUri in a local object
                 // that represents the media file.
-                list.add(new InImages(name, size, contentUri, false));
+                videos.add(new InVideos(contentUri, name, duration, size));
             }
         }
-        return list;
+        return videos;
     }
 
-    private final ClickListener<InImages> clickListener = new ClickListener<InImages>() {
+    private final ClickListener<InVideos> clickListener = new ClickListener<InVideos>() {
         @Override
-        public void onCLicked(InImages data) {
+        public void onCLicked(InVideos data) {
             Toast.makeText(getContext(), data.getName(), Toast.LENGTH_SHORT).show();
         }
     };
