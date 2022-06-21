@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_Projects/QuickShare/app/src/main/res/drawable/rounded_button.xml" value="0.1655" />
+        <entry key="..\:/Android_Projects/QuickShare/app/src/main/res/layout/activity_main.xml" value="0.30416666666666664" />
         <entry key="..\:/Android_Projects/QuickShare/app/src/main/res/layout/fragment_apps.xml" value="0.30416666666666664" />
         <entry key="..\:/Android_Projects/QuickShare/app/src/main/res/layout/fragment_images.xml" value="0.30416666666666664" />
         <entry key="..\:/Android_Projects/QuickShare/app/src/main/res/layout/fragment_music.xml" value="0.30416666666666664" />
