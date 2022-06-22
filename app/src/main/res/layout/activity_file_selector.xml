@@ -19,7 +19,7 @@
         android:id="@+id/tabLayout"
         android:layout_below="@+id/toolbar"
         app:tabIndicatorColor="@color/white"
-        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorHeight="4dp"
         app:tabSelectedTextColor="@color/white"
         android:background="@color/purple"
         app:tabGravity="fill"
@@ -45,7 +45,7 @@
         android:orientation="horizontal">
         <TextView
             android:id="@+id/textView_total"
-            android:text="Total"
+            android:text="Send"
             android:textAlignment="center"
             android:padding="8dp"
             android:layout_margin="8dp"

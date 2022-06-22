@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.quickshare.adapters.ViewPagerAdapter;
@@ -25,6 +28,7 @@ public class FileSelectorActivity extends AppCompatActivity implements ClickList
     private ViewPagerAdapter viewPagerAdapter;
     TextView textView_total;
     int total = 0;
+    LinearLayout footer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,14 @@ public class FileSelectorActivity extends AppCompatActivity implements ClickList
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
         textView_total = findViewById(R.id.textView_total);
+        footer = findViewById(R.id.footer);
+
+        footer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FileSelectorActivity.this, RadarActivity.class));
+            }
+        });
 
         setSupportActionBar(toolbar);
         setupViewPager(viewPager);
