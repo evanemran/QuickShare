@@ -1,12 +1,22 @@
 package com.example.quickshare.model;
 
 public class PairableDevices {
+    int id;
     String name;
     String ip;
     String mac;
     boolean isQuickShareEnabled;
 
-    public PairableDevices(String name, String ip, String mac, boolean isQuickShareEnabled) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public PairableDevices(int id, String name, String ip, String mac, boolean isQuickShareEnabled) {
+        this.id = id;
         this.name = name;
         this.ip = ip;
         this.mac = mac;

@@ -3,23 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    android:background="@color/purple"
+    android:gravity="center"
+    android:background="@android:color/transparent"
     android:layout_margin="8dp"
-    android:orientation="horizontal">
-    <ImageView
+    android:orientation="vertical">
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageView_device"
-        android:src="@drawable/ic_device_mobile"
+        android:src="@drawable/ic_smartphone"
+        android:layout_height="50dp"
         android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:scaleType="centerCrop"
+        app:riv_corner_radius="30dip"
+        app:riv_border_width="2dip"
+        app:riv_border_color="@color/white"
+        app:riv_mutate_background="true"
+        app:riv_tile_mode="clamp"
+        app:riv_oval="true" />
     <TextView
         android:id="@+id/textView_device"
         android:text="Device Name"
-        android:textSize="18sp"
+        android:textSize="14sp"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textStyle="italic"
         android:padding="8dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

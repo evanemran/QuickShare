@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,8 @@ public class DevicesRecyclerAdapter extends RecyclerView.Adapter<DeviceRecyclerV
     public void onBindViewHolder(@NonNull DeviceRecyclerViewHolder holder, int position) {
         final PairableDevices device = list.get(position);
         holder.textView_device.setText(device.getName());
+
+        holder.imageView_device.setImageResource(device.getId());
     }
 
     @Override
@@ -48,10 +51,12 @@ public class DevicesRecyclerAdapter extends RecyclerView.Adapter<DeviceRecyclerV
 class DeviceRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     TextView textView_device;
+    ImageView imageView_device;
 
     public DeviceRecyclerViewHolder(@NonNull View itemView) {
         super(itemView);
 
         textView_device = itemView.findViewById(R.id.textView_device);
+        imageView_device = itemView.findViewById(R.id.imageView_device);
     }
 }

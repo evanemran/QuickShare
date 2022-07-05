@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuickShare">
         <activity
+            android:name=".SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".RadarActivity"
             android:exported="false" />
         <activity

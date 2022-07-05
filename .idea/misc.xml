@@ -5,14 +5,17 @@
       <map>
         <entry key="..\:/QuickShare/app/src/main/res/drawable/ic_device_mobile.xml" value="0.1" />
         <entry key="..\:/QuickShare/app/src/main/res/drawable/rounded_button.xml" value="0.112" />
+        <entry key="..\:/QuickShare/app/src/main/res/drawable/rounded_button_blue.xml" value="0.142" />
         <entry key="..\:/QuickShare/app/src/main/res/drawable/rounded_button_pressed.xml" value="0.112" />
         <entry key="..\:/QuickShare/app/src/main/res/drawable/rounded_button_released.xml" value="0.112" />
         <entry key="..\:/QuickShare/app/src/main/res/layout/activity_file_selector.xml" value="0.1" />
         <entry key="..\:/QuickShare/app/src/main/res/layout/activity_main.xml" value="0.16893115942028986" />
         <entry key="..\:/QuickShare/app/src/main/res/layout/activity_radar.xml" value="0.14" />
+        <entry key="..\:/QuickShare/app/src/main/res/layout/activity_search.xml" value="0.1921875" />
         <entry key="..\:/QuickShare/app/src/main/res/layout/fragment_apps.xml" value="0.1921875" />
         <entry key="..\:/QuickShare/app/src/main/res/layout/list_apps.xml" value="0.1921875" />
         <entry key="..\:/QuickShare/app/src/main/res/layout/list_devices.xml" value="0.1921875" />
+        <entry key="..\:/QuickShare/app/src/main/res/layout/list_images.xml" value="0.1921875" />
       </map>
     </option>
   </component>

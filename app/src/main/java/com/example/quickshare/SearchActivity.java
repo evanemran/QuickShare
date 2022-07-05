@@ -2,36 +2,33 @@ package com.example.quickshare;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.quickshare.adapters.DevicesRecyclerAdapter;
 import com.example.quickshare.listeners.ClickListener;
 import com.example.quickshare.model.PairableDevices;
-import com.example.quickshare.utils.RadarView;
-import com.example.quickshare.utils.RainRadarView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RadarActivity extends AppCompatActivity {
+import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 
-    RainRadarView radarView;
-    RecyclerView recycler_devices;
+public class SearchActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_radar);
+        setContentView(R.layout.activity_search);
 
-        radarView = findViewById(R.id.radarView);
-        recycler_devices = findViewById(R.id.recycler_devices);
-        radarView.start();
+        recyclerView_search = findViewById(R.id.recyclerView_search);
 
+        PulsatorLayout pulsator = (PulsatorLayout) findViewById(R.id.pulsator);
+        pulsator.start();
 
         List<PairableDevices> list = new ArrayList<>();
         list.add(new PairableDevices(R.drawable.av_one, "Redmi Note 4X", "", "", false));
@@ -41,25 +38,16 @@ public class RadarActivity extends AppCompatActivity {
         list.add(new PairableDevices(R.drawable.av_four,"Mi 11X", "", "", false));
         list.add(new PairableDevices(R.drawable.av_five,"Mi 11X", "", "", false));
 
-
-        recycler_devices.setHasFixedSize(true);
-        recycler_devices.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView_search.setHasFixedSize(true);
+        recyclerView_search.setLayoutManager(new GridLayoutManager(this, 3));
         DevicesRecyclerAdapter adapter = new DevicesRecyclerAdapter(this, list, listener);
-        recycler_devices.setAdapter(adapter);
+        recyclerView_search.setAdapter(adapter);
     }
-
-    /*public void stopAnimation(View view) {
-        if (radarView != null) radarView.stopAnimation();
-    }
-
-    public void startAniamtion(View view) {
-        if (radarView != null) radarView.startAnimation();
-    }*/
 
     private final ClickListener<PairableDevices> listener = new ClickListener<PairableDevices>() {
         @Override
         public void onCLicked(PairableDevices data) {
-            Toast.makeText(RadarActivity.this, data.getName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(SearchActivity.this, data.getName(), Toast.LENGTH_SHORT).show();
         }
     };
 }
